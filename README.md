@@ -1,7 +1,7 @@
 # Gym Membership System
 
 ## Project Description
-This is our capstone project, a Gym Membership System based on gyms like Anytime Fitness. Right now most small gyms handle memberships, payments, and attendance manually, through spreadsheets, paper logs, or just remembering who paid. That gets messy fast and makes it hard to tell who's actually allowed in the gym or who still owes a renewal. This system puts membership, payments, gym access, attendance, and trainer bookings in one place instead.
+This is my capstone project, a Gym Membership System based on gyms like Anytime Fitness. Right now most small gyms handle memberships, payments, and attendance manually, through spreadsheets, paper logs, or just remembering who paid. That gets messy fast and makes it hard to tell who's actually allowed in the gym or who still owes a renewal. This system puts membership, payments, gym access, attendance, and trainer bookings in one place instead.
 
 Who uses it:
 - **Members** sign up, pay, renew when their plan expires, get access to the gym, and book sessions with a trainer.
