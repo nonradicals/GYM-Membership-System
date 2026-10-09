@@ -1,0 +1,104 @@
+%% Class Diagram - Gym Membership System
+classDiagram
+    class Person {
+        <<abstract>>
+        -String id
+        -String name
+        -String email
+        -String contactNumber
+        +getId() String
+        +getName() String
+        +getEmail() String
+        +getContactNumber() String
+        +getRole()* String
+    }
+
+    class Member {
+        -MembershipPlan membershipPlan
+        -MembershipStatus status
+        -List~Payment~ paymentHistory
+        -List~AttendanceRecord~ attendanceRecords
+        +hasActiveMembership() boolean
+        +addPayment(payment) void
+        +addAttendanceRecord(record) void
+        +getRole() String
+    }
+
+    class Trainer {
+        -List~String~ availability
+        -List~Session~ assignedSessions
+        +setAvailability(slots) void
+        +assignSession(session) void
+        +getRole() String
+    }
+
+    class Admin {
+        +getRole() String
+    }
+
+    class MembershipPlan {
+        -String planId
+        -String planName
+        -int durationMonths
+        -double price
+        -LocalDate startDate
+        -LocalDate endDate
+        +activate(date) void
+        +extend(months) void
+        +isActive() boolean
+    }
+
+    class Session {
+        -String sessionId
+        -LocalDateTime dateTime
+        -SessionStatus status
+        +confirm() void
+        +cancel() void
+    }
+
+    class Payment {
+        -String paymentId
+        -double amount
+        -LocalDate date
+        -PaymentStatus status
+        +process() boolean
+    }
+
+    class AttendanceRecord {
+        -String recordId
+        -LocalDateTime timestamp
+    }
+
+    class MembershipService {
+        +registerMember(member, plan) void
+        +processPayment(member, amount) Payment
+        +validateMembership(member) boolean
+        +renewPlan(member, amount, months) void
+    }
+
+    class BookingService {
+        +checkSlotAvailability(trainer, slot) boolean
+        +requestBooking(member, trainer, slot, dateTime) Session
+        +confirmSession(session) void
+    }
+
+    class AttendanceService {
+        +recordAttendance(member) AttendanceRecord
+        +getAttendanceLogs(member) List~AttendanceRecord~
+        +generateReport(members) String
+    }
+
+    Person <|-- Member
+    Person <|-- Trainer
+    Person <|-- Admin
+
+    Member "1" --> "0..1" MembershipPlan : has
+    Member "1" --> "*" Payment : makes
+    Member "1" --> "*" AttendanceRecord : logs
+    Member "1" --> "*" Session : books
+    Trainer "1" --> "*" Session : conducts
+
+    MembershipService ..> Member : manages
+    MembershipService ..> Payment : creates
+    BookingService ..> Session : creates
+    AttendanceService ..> AttendanceRecord : creates

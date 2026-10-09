@@ -1,0 +1,36 @@
+%% Use Case Diagram - Gym Membership System
+flowchart LR
+    Member([Member])
+    Trainer([Trainer])
+    Admin([Admin])
+
+    subgraph System["Gym Membership System"]
+        UC1(["Register Membership"])
+        UC2(["Make Payment"])
+        UC3(["Renew Membership Plan"])
+        UC4(["Request Gym Access"])
+        UC5(["Book Training Session"])
+        UC6(["Set Availability"])
+        UC7(["Confirm Session"])
+        UC8(["View Client Attendance"])
+        UC9(["Track Attendance"])
+        UC10(["Monitor Attendance Logs"])
+        UC11(["Generate Reports"])
+    end
+
+    Member --> UC1
+    Member --> UC3
+    Member --> UC4
+    Member --> UC5
+    Member --> UC9
+
+    Trainer --> UC6
+    Trainer --> UC7
+    Trainer --> UC8
+
+    Admin --> UC10
+    Admin --> UC11
+
+    UC1 -. includes .-> UC2
+    UC3 -. includes .-> UC2
+    UC5 -. includes .-> UC7
